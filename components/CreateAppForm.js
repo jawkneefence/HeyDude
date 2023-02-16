@@ -1,4 +1,6 @@
 import { useReducer } from "react"
+import NewAppSuccess from "./NewAppSuccess"
+import ErrorMsg from "./ErrorMsg"
 
 const formReducer = (state, event) => {
     return {       
@@ -7,15 +9,17 @@ const formReducer = (state, event) => {
     }
 }
 
-export default function NewAppForm() {
+export default function CreateAppForm() {
 
     const [formData, setFormData] = useReducer(formReducer, {})
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("testing");
+        if(Object.keys(formData).length==0) return <ErrorMsg message={"Something unexpected happened. Please try again."}></ErrorMsg>
         console.log(formData)
     }
+
+    if(Object.keys(formData).length > 0) return <NewAppSuccess message={"New Session Created!"}></NewAppSuccess>
 
     return (
         <form className = "grid lg:grid-cols-1 w-4/6 gap-4" onSubmit = {handleSubmit}>
@@ -35,7 +39,7 @@ export default function NewAppForm() {
             <label className = "text-gray-200" htmlFor="victimsDrop"> Victims: </label>
                 <input type="text" onChange={setFormData} id = "victimsDrop" name="victimsDrop" className = "border w-full px-5 py-3 focus:outline-none rounded-md" placeholder="Teddy" ></input>
             </div>
-            <button className = "justify-center text-md w-2/6 bg-green-600 text-gray-200 px-2 py-1 roundedmd hover:bg-gray-100 hover:border-green-600 hover:text-green-600">Create</button>
+            <button className = "justify-center text-md w-2/6 bg-green-600 text-gray-200 px-2 py-1 roundedmd hover:bg-gray-100 hover:border-green-600 hover:text-green-600 rounded-md">Create</button>
         </form>
     )
 }
