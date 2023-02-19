@@ -10,6 +10,19 @@ export async function getSessions(req, res) {
     }
 }
 
+export async function getSession(req, res) {
+    try {
+        const {seshId} = req.query;
+        if(seshId) {
+            const sesh = await Sessions.findById(seshId);
+            res.status(200).json(sesh);
+        }
+        res.status(404).json({error: "Session id not provided"});
+    }catch(error) {
+        res.status(404).json({error: "Cannot get session"});
+    }
+}
+
 export async function postSession(req, res) {
     try {
         const formData = req.body;

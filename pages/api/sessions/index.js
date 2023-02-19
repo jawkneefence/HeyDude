@@ -11,6 +11,7 @@ Data = {
 
 export default async function handler(req, res) {
   connectMongo().catch(() => res.status(405).json({error: "Error connecting to db!"}));
+  
   const { method } = req;
 
   switch(method) {
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
         break;
     case 'DELETE':
         deleteSession(req, res)
-        res.status(200).json({method,name:'DELETE Request!'});
+        //res.status(200).json({method,name:'DELETE Request!'});
         break;
     default:
         res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
