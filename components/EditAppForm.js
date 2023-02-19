@@ -9,7 +9,7 @@ const formReducer = (state, event) => {
     }
 }
 
-export default function CreateAppForm() {
+export default function EditAppForm() {
 
     const [formData, setFormData] = useReducer(formReducer, {})
 
@@ -17,13 +17,9 @@ export default function CreateAppForm() {
         e.preventDefault();
 
         if(Object.keys(formData).length==0) return <ErrorMsg message={"Something unexpected happened. Please try again."}></ErrorMsg>
-        else {
-            console.log(formData)
-            return <NewAppSuccess message={"New Session Created!"}></NewAppSuccess>
-        }
-        
+        console.log(formData)
     }
-    //if(Object.keys(formData).length > 0) return <NewAppSuccess message={"New Session Created!"}></NewAppSuccess>
+    //if(Object.keys(formData).length > 0) return <NewAppSuccess message={"Session Updated!"}></NewAppSuccess>
 
 
     return (
@@ -44,8 +40,8 @@ export default function CreateAppForm() {
             <label className = "text-gray-200" htmlFor="victimsDrop"> Victims: </label>
                 <input type="text" onChange={setFormData} id = "victimsDrop" name="victimsDrop" className = "border w-full px-5 py-3 focus:outline-none rounded-md" placeholder="Teddy" ></input>
             </div>
-            <button className = "justify-center text-md w-2/6 bg-green-600 text-gray-200 px-2 py-1 roundedmd hover:bg-gray-100 hover:border-green-600 hover:text-green-600 rounded-md">
-                Create</button>
+            <button className = "justify-center text-md w-2/6 bg-yellow-600 text-gray-200 px-2 py-1 roundedmd hover:bg-gray-100 hover:border-green-600 hover:text-green-600 rounded-md">
+                Update</button>
         </form>
     )
 }

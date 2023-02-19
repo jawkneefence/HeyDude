@@ -1,4 +1,6 @@
 import {BiUserPlus, BiEdit, BiTrashAlt} from 'react-icons/bi'
+import EditAppForm from './EditAppForm'
+import { useState } from 'react'
 
 export default function appTable() {
     return (
@@ -23,15 +25,26 @@ export default function appTable() {
                 </tr>
             </thead>
             <tbody className = "bg-gray-200">
-                <tr className = "bg-gray-100 text-center font-semibold items-center">
+                {Tr()}
+                {Tr()}
+                {Tr()}
+            </tbody>
+        </table>
+    )
+}
+
+function Tr({id, appDate, notifyOn, game}) {
+
+    return (
+        <tr className = "bg-gray-100 text-center font-semibold items-center">
                     <td className="py-3">
-                        <span>12-31-2069 @ 9:00PM</span>
+                        <span>{appDate || "12-31-2069 @ 9:00PM"}</span>
                     </td>
                     <td className="py-3">
-                        <span>06-24-2000</span>
+                        <span>{notifyOn || "06-24-2000"}</span>
                     </td>
                     <td className="py-3">
-                        <span>Valheim</span>
+                        <span>{game || "Valheim"}</span>
                     </td>
                     <td className="py-3">
                         <span>3</span>
@@ -41,9 +54,6 @@ export default function appTable() {
                     <button className="cursor"><BiEdit size={23} color={"rgb(41,132,238)"}></BiEdit></button>
                     <button className="cursor"><BiTrashAlt size={23} color={"rgb(244,63,94)"}></BiTrashAlt></button>
                     </td>
-
                 </tr>
-            </tbody>
-        </table>
     )
 }

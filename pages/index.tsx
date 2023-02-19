@@ -2,12 +2,20 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import AppTable from "../components/AppTable"
+import AppTable from '../components/AppTable'
 import CreateAppForm from "../components/CreateAppForm"
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  const [visible, setVisible] = useState(false)
+
+  const visibleHandler = () => {
+    setVisible(visible ? false : true)
+  }
+
   return (
     <section className = "bg-blood-red">
       <Head>
@@ -21,17 +29,17 @@ export default function Home() {
         <p className = 'text-center text-gray-100'>Remind (and annoy) your friends about the legendary gaming session you've planned.</p>
         <div className = "container mx-auto flex justify-between py-5">
           <div className = "left flex gap-3">
-            <button className = "flex bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-gray-50 hover:border-indigo-500 hover:text-gray-800">
+            <button onClick = {visibleHandler} className = "flex bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-gray-50 hover:border-indigo-500 hover:text-gray-800">
               Create Session 
             </button>
           </div>
         </div>
         
         <div className="container mx-auto">
-          <CreateAppForm></CreateAppForm>
+          {visible ?<CreateAppForm></CreateAppForm> : <></>}
         </div>
 
-        <div className="container mx-auto bg-blood-red">
+        <div className="container mx-auto my-5">
         <AppTable></AppTable>
         ok ty
         </div>
