@@ -1,13 +1,5 @@
 import connectMongo from '@/database/conn'
 import { getSessions, postSession, updateSession, deleteSession } from '@/database/controller'
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-/*
-Data = {
-  name: string,
-  appDate: Date,
-  notifyOn: Date,
-  game: string
-}*/
 
 export default async function handler(req, res) {
   connectMongo().catch(() => res.status(405).json({error: "Error connecting to db!"}));
@@ -33,6 +25,6 @@ export default async function handler(req, res) {
         break;
     default:
         res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
-        res.status(405).end(`Method ${method} Not Allowed!`);
+        res.status(405).end(`Method ${method} Not Allowed!!!`);
   }
 }

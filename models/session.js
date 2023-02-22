@@ -5,7 +5,7 @@ const seshSchema = new Schema({
     notifyOn: Date,
     game: String,
     ownerEmail: String,
-    victims: String
+    victims: String,
 })
 
 const Sessions = models.session || model('session', seshSchema)

@@ -1,5 +1,5 @@
 import connectMongo from '@/database/conn'
-import { getSessions, getSession, postSession, updateSession, deleteSession } from '@/database/controller'
+import { getSession, postSession, updateSession, deleteSession } from '@/database/controller'
 
 export default async function handler(req, res) {
 

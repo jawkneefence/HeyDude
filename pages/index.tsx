@@ -3,17 +3,21 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import AppTable from '../components/AppTable'
-import CreateAppForm from "../components/CreateAppForm"
+import Form from "../components/form"
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleChangeAction } from '@/redux/reducer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const [visible, setVisible] = useState(false)
+  const toggleForm = useSelector((state) => state.app.client.toggleForm)
+  const dispatch = useDispatch()
+
 
   const visibleHandler = () => {
-    setVisible(visible ? false : true)
+    dispatch(toggleChangeAction())
   }
 
   return (
@@ -34,13 +38,11 @@ export default function Home() {
             </button>
           </div>
         </div>
-        
         <div className="container mx-auto">
-          {visible ?<CreateAppForm></CreateAppForm> : <></>}
+          {toggleForm ?<Form></Form> : <></>}
         </div>
-
         <div className="container mx-auto my-5">
-        <AppTable></AppTable>
+          <AppTable></AppTable>
         ok ty
         </div>
         ok ty
